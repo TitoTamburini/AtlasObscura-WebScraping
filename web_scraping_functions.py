@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 import os
 from datetime import datetime
-import linecache
 #Create ordered by page directories for tsv files
 def create_tsv_directories():
     for page_index  in range(1,401):
@@ -26,10 +25,10 @@ def get_placePeopleWant(soup):
 
 def get_placeDesc(soup):
     placeDesc = [x.text.replace("\xa0"," ") for x in soup.find('div',{'id': 'place-body'}).findChildren('p')]
-    return ''.join(placeDesc)
+    return ''.join(placeDesc).replace('\n',' ').replace('\t',' ')
 
 def get_placeShortDesc(soup):
-    return   soup.find('h3',{'class' :'DDPage__header-dek'}).text.strip()
+    return   soup.find('h3',{'class' :'DDPage__header-dek'}).text.strip().replace('\n',' ')
 
 def get_placeNearby(soup):
     return [x.text for x in soup.find_all('div',{'class':'DDPageSiderailRecirc__item-title'})]
@@ -37,10 +36,11 @@ def get_placeNearby(soup):
 def get_placeAddress(soup):
     address_tag =  soup.find('address',{'class':'DDPageSiderail__address'})
     div = address_tag.find('div')
-    address =""
-    if(len(div.contents) > 4):
-        address = div.contents[0]+", "+div.contents[2]+", "+div.contents[4]
-    return address
+    address =[]
+    for x in div:
+        if(str(type(x)) =='<class \'bs4.element.NavigableString\'>' and x!='\n'):
+            address.append(x.replace('\n',''))
+    return ",".join(address).replace('\n','')
 
 def get_placeCoordinates(soup):
     coord_div  = soup.find('div',{'class':'DDPageSiderail__coordinates js-copy-coordinates'})
@@ -56,7 +56,10 @@ def get_placeEditors(soup):
     return editors_list
 
 def get_placePubDate(soup):
-    return datetime.strptime(soup.find('div',{'class':'DDPContributor__name'}).text,'%B %d, %Y').date()
+    if(soup.find('div',{'class':'DDPContributor__name'})!=None):
+        return datetime.strptime(soup.find('div',{'class':'DDPContributor__name'}).text,'%B %d, %Y').date()
+    else:
+        return ""
 
 def get_placeRelatedLists(soup):
    div = soup.findAll('div',{'class':'card-grid CardRecircSection__card-grid js-inject-gtm-data-in-child-links'})
@@ -74,6 +77,7 @@ def get_placeRelatedPlaces(soup):
 
 def make_place_tsv(place_number,tsv_path,html_path,url):
     if not os.path.exists(tsv_path+"/place_"+str(place_number)+'.tsv'): 
+        print("Place "+str(place_number)+"Page "+str((place_number//18)+1))
         try:
             with open(html_path,"r",encoding='utf-8') as html:
                 soup = BeautifulSoup(html,'lxml')
