@@ -40,7 +40,7 @@ def get_placeAddress(soup):
     for x in div:
         if(str(type(x)) =='<class \'bs4.element.NavigableString\'>' and x!='\n'):
             address.append(x.replace('\n',''))
-    return ",".join(address).replace('\n','')
+    return ",".join(address).replace('\n','').replace('\t','')
 
 def get_placeCoordinates(soup):
     coord_div  = soup.find('div',{'class':'DDPageSiderail__coordinates js-copy-coordinates'})
