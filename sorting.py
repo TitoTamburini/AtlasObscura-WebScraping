@@ -1,10 +1,12 @@
-
-
+import os
 
 
 def my_mean(values,n):
 	return sum(values)/n
 
+def print_list(l):
+	for i in range(len(l)):
+		print(l[i][0] + ' '+l[i][1]+' '+"{:.2f}".format(l[i][2]))
 
 def readTxt(number_rows):
     with open('ApplicantsInfo.txt','r',encoding='utf-8') as f:
