@@ -4,7 +4,7 @@ ADM Homework 3 2022
 
 ## Repository content:
 
-1. Homework3_main.ipynb: Main notebook it starts from part 1,2,3,4,7
+1. main.ipynb: Main notebook it starts from part 1,2,3,4,7
 2. CommandLine.sh: file .sh containing the command line solution
 3. RankingList.txt: output of the sorting query
 4. TSV_FILES.zip: all the .tsv files for each place in atlas obscura ordered by page, output of part 1.2
