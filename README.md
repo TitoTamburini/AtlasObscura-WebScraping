@@ -1,6 +1,9 @@
 # ADM_HW3
-ADM Homework 3 2022
-Build Dataset using craping function from BeatifulSoup pyhton module.
+ADM Homework 3 2022\
+Build Dataset conatining most relevant places using craping function from BeatifulSoup pyhton module.\
+With the complete dataset build a search engine on it.\
+Execute the query.\
+Visualize the most relevant places in the datasete
 
 ## Repository content:
 
