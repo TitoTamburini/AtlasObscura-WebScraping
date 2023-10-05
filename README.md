@@ -5,7 +5,7 @@ With the complete dataset build a search engine on it.\
 Execute the query.\
 Define a new score for your search engine.\
 Visualize the most relevant places in the dataset using the new score defined.\
-Answer a theoretical question on Sorting Algorithm.\
+Answer a theoretical question on Sorting Algorithm.
 
 ## Repository content:
 
