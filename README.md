@@ -1,5 +1,5 @@
-# ADM_HW3
-ADM Homework 3 2022\
+# Adavanced Data Mining 2022/23 - Homework 3
+
 Build Dataset containing most relevant places from the website AtlasObscura.com using craping function from BeatifulSoup pyhton module.\
 With the complete dataset build a search engine on it.\
 Execute the query.\
