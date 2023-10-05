@@ -1,6 +1,6 @@
 # ADM_HW3
 ADM Homework 3 2022
-
+Build Dataset using craping function from BeatifulSoup pyhton module.
 
 ## Repository content:
 
